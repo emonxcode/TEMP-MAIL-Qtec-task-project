@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AppColors {
-  static const primaryColor = Colors.green;
+class ColorManager {
+  static const primaryColor = Color.fromARGB(255, 13, 41, 83);
   static const lightGrey = Color.fromARGB(255, 241, 241, 241);
   static const mediumGrey = Color.fromARGB(255, 224, 224, 224);
 
@@ -18,7 +18,7 @@ class AppColors {
 
   // Color From Figma Testing
   static const Color scaffoldBackGroundColor =
-      Color.fromARGB(255, 241, 241, 241);
+      Color.fromARGB(255, 225, 235, 255);
   static const Color sectionBackGroundColor = Color(0xFFF2F2F2);
   static const Color primaryTextColor = Color(0xFF3D3D3D);
   static const Color secondaryTextColor = Color(0xFF6C6C6C);

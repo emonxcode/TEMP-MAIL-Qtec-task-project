@@ -34,7 +34,7 @@ class QtecTextWidget extends StatelessWidget {
       style: TextStyle(
         fontWeight: fontWeight ?? FontWeight.normal,
         fontSize: fontSize ?? 15,
-        color: color ?? AppColors.primaryTextColor,
+        color: color ?? ColorManager.primaryTextColor,
         overflow: maxLines != null ? TextOverflow.ellipsis : null,
         decoration: textDecoration,
         fontFamily: "Ador",

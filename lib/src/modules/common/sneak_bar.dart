@@ -14,12 +14,12 @@ class QtecSneakBar {
       int? snackDuration,
       Color? snackBackgroundColor}) {
     final snack = SnackBar(
-      backgroundColor: snackBackgroundColor ?? AppColors.blackColor,
+      backgroundColor: snackBackgroundColor ?? ColorManager.blackColor,
       behavior: snackBehavior ?? SnackBarBehavior.fixed,
       elevation: 0,
       action: snackBarAction,
       content: QtecTextWidget(
-          color: snackTextColor ?? AppColors.whiteColor,
+          color: snackTextColor ?? ColorManager.whiteColor,
           fontSize: snackTextSize ?? 14,
           maxLines: 4,
           text: snackText),

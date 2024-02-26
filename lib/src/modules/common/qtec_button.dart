@@ -53,7 +53,7 @@ class QtecButton extends StatelessWidget {
           // gradient: onTap != null ? gradient : null,
 
           color: onTap != null
-              ? buttonColor ?? AppColors.greenColor
+              ? buttonColor ?? ColorManager.greenColor
               : Colors.grey.withOpacity(0.5),
           border: Border.all(color: borderColor ?? Colors.white),
           borderRadius: BorderRadius.circular(borderRadius ?? 15)),
@@ -92,7 +92,7 @@ class QtecButton extends StatelessWidget {
                                   child: Icon(
                                     icon,
                                     size: iconSize ?? 16,
-                                    color: iconColor ?? AppColors.whiteColor,
+                                    color: iconColor ?? ColorManager.whiteColor,
                                   ),
                                 )
                               : const SizedBox(),
@@ -100,7 +100,7 @@ class QtecButton extends StatelessWidget {
                       ],
                     )
                   : const CircularProgressIndicator(
-                      color: AppColors.whiteColor,
+                      color: ColorManager.whiteColor,
                     ),
             ),
           ),

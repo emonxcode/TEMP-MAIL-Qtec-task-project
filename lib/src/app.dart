@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'modules/authentication/bloc/auth.bloc.dart';
 import 'modules/authentication/views/auth.screen.dart';
+import 'modules/domain_listing/views/domains.screen.dart';
 
 class Application extends StatelessWidget {
   const Application({super.key});
@@ -20,7 +21,7 @@ class Application extends StatelessWidget {
               create: (BuildContext context) => AuthenticationBloc(),
             ),
           ],
-          child: const HomeScreen(),
+          child: const DomainsScreen(),
         ));
   }
 }

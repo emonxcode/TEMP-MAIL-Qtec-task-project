@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../config/colors.dart';
@@ -132,7 +131,7 @@ formInputDecoration(
       fontSize: 16,
       color: Color.fromARGB(255, 0, 0, 0),
     ),
-    fillColor: fillColor ?? AppColors.scaffoldBackGroundColor,
+    fillColor: fillColor ?? ColorManager.scaffoldBackGroundColor,
     filled: true,
     contentPadding: EdgeInsets.symmetric(
         horizontal: horizontal ?? 10, vertical: vertical ?? 10),
@@ -156,7 +155,7 @@ formInputDecoration(
     ),
     hintText: hintText,
     hintStyle: const TextStyle(
-      color: AppColors.grey,
+      color: ColorManager.grey,
       fontSize: 16,
     ),
     suffixIcon: suffixIcon,
