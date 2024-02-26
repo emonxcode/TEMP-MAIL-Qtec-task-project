@@ -3,9 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:temp_mail/src/config/app_space.dart';
 import 'package:temp_mail/src/config/constants.dart';
+import 'package:temp_mail/src/local/shared_preference_helper.dart';
+import 'package:temp_mail/src/modules/common/qtec_button.dart';
 import 'package:temp_mail/src/modules/common/qtec_text_widget.dart';
 import 'package:temp_mail/src/modules/inbox_messages/bloc/messages.bloc.dart';
 import 'package:temp_mail/src/modules/inbox_messages/bloc/messages.state.dart';
+import 'package:temp_mail/src/modules/splash/splash.screen.dart';
 import 'package:temp_mail/src/utils/context.dart';
 import '../../../config/colors.dart';
 import '../../common/screen_wrapper.dart';
@@ -38,6 +41,48 @@ class _MessagesScreenState extends State<MessagesScreen> {
               title: appName,
               subtitle: state.email ?? "",
               showBackBtn: false,
+              showActionBtn: true,
+              onActionPressed: () async {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const QtecTextWidget(
+                          text: "Are you sure want to logout?"),
+                      actionsAlignment: MainAxisAlignment.spaceBetween,
+                      actions: [
+                        QtecButton(
+                          buttonHeight: 40,
+                          buttonWidth: 100,
+                          onTap: () {
+                            context.pop();
+                          },
+                          buttonText: "Cancel",
+                          isLoading: false,
+                          showIcon: false,
+                          textColor: ColorManager.whiteColor,
+                          buttonColor: ColorManager.primaryColor,
+                        ),
+                        QtecButton(
+                          buttonHeight: 40,
+                          buttonWidth: 100,
+                          textColor: ColorManager.whiteColor,
+                          buttonColor: ColorManager.redColor,
+                          onTap: () async {
+                            await LocalData.setLoginFlag(false);
+                            if (context.mounted) {
+                              context.pushAndRemoveUntil(const SplashScreen());
+                            }
+                          },
+                          buttonText: "Logout",
+                          isLoading: false,
+                          showIcon: false,
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

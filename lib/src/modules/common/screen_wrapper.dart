@@ -13,12 +13,16 @@ class ScreenWrapperWidget extends StatelessWidget {
     required this.subtitle,
     required this.child,
     required this.showBackBtn,
+    required this.showActionBtn,
+    this.onActionPressed,
   });
 
   final String title;
   final String subtitle;
   final Widget child;
   final bool showBackBtn;
+  final bool showActionBtn;
+  final GestureTapCallback? onActionPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +60,15 @@ class ScreenWrapperWidget extends StatelessWidget {
                         color: ColorManager.whiteColor,
                       ),
                       const Spacer(),
-                      AppSpace.spaceW30
+                      if (!showActionBtn) AppSpace.spaceW30,
+                      if (showActionBtn)
+                        IconButton(
+                          onPressed: onActionPressed,
+                          icon: const Icon(
+                            Icons.logout,
+                            color: ColorManager.whiteColor,
+                          ),
+                        ),
                     ],
                   ),
                 ),

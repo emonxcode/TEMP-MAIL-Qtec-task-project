@@ -48,6 +48,7 @@ class AuthenticationBloc extends Cubit<AuthenticationState> {
       if (response['token'] != null) {
         await LocalData.setToken(response['token']);
         await LocalData.setEmail("${state.emailTextController!.text}@$domain");
+        await LocalData.setLoginFlag(true);
 
         if (context.mounted) {
           context.pushAndRemoveUntil(const MessagesScreen());

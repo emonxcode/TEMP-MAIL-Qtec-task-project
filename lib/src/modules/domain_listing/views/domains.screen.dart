@@ -34,6 +34,7 @@ class _DomainsScreenState extends State<DomainsScreen> {
         title: appName,
         subtitle: available_domain,
         showBackBtn: false,
+        showActionBtn: false,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

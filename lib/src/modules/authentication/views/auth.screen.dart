@@ -30,6 +30,7 @@ class AuthenticationScreen extends StatelessWidget {
                 title: appName,
                 subtitle: state.pageStatus == 0 ? login : create_email_account,
                 showBackBtn: true,
+                showActionBtn: false,
                 child: Column(
                   children: [
                     Flexible(

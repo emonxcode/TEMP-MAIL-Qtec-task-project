@@ -23,4 +23,12 @@ class LocalData {
   static Future<String> getEmail() async {
     return prefs!.getString("email") ?? '';
   }
+
+  static Future<bool> setLoginFlag(bool login) async {
+    return prefs!.setBool("loginflag", login);
+  }
+
+  static Future<bool> getLoginFlag() async {
+    return prefs!.getBool("loginflag") ?? false;
+  }
 }
