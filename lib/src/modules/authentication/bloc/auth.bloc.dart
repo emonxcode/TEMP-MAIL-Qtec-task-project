@@ -42,7 +42,6 @@ class AuthenticationBloc extends Cubit<AuthenticationState> {
         "password": state.passwordTextController!.text,
       };
       response = await repository.login(body);
-      print(response.toString());
 
       emit(state.copyWith(AuthenticationState(isBtnLoading: false)));
       if (response['token'] != null) {
