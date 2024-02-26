@@ -62,7 +62,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                 onLoading: () async {
                   await context
                       .read<MessagesBloc>()
-                      .getMessages(context: context);
+                      .getMessages(context: context );
                   _refreshController.loadComplete();
                 },
                 child: Column(
@@ -102,7 +102,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                                           child: CircleAvatar(
                                             child: QtecTextWidget(
                                                 text: state.messages![index]
-                                                    .from.name[0]
+                                                    .from!.name![0]
                                                     .toString()),
                                           ),
                                         ),
@@ -120,7 +120,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                                                 children: [
                                                   QtecTextWidget(
                                                     text: state.messages![index]
-                                                            .from.name ??
+                                                            .from!.name ??
                                                         "",
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 15,
@@ -130,7 +130,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                                                             'dd MMM yy hh:mm a')
                                                         .format(state
                                                             .messages![index]
-                                                            .createdAt),
+                                                            .createdAt!),
                                                     fontSize: 12,
                                                     color: ColorManager.grey,
                                                   ),
@@ -138,7 +138,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                                               ),
                                               QtecTextWidget(
                                                 text:
-                                                    "From: ${state.messages![index].from.address}" ??
+                                                    "From: ${state.messages![index].from!.address}" ??
                                                         "",
                                                 fontSize: 13,
                                               ),

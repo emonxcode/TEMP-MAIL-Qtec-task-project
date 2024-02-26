@@ -11,11 +11,15 @@ import 'package:temp_mail/src/modules/domain_listing/repo/domains.repo.dart';
 import 'package:temp_mail/src/modules/inbox_messages/bloc/messages.state.dart';
 import 'package:temp_mail/src/modules/inbox_messages/models/email.model.dart';
 import 'package:temp_mail/src/modules/inbox_messages/repo/messages.repo.dart';
+import 'package:temp_mail/src/utils/connectivity.dart';
+
+import '../../../local/sqflite_db_helper.dart';
 
 class MessagesBloc extends Cubit<MessagesState> {
   MessagesBloc() : super(MessagesState(messages: const [], isLoading: false));
 
   final repository = GetIt.instance<MessagesRepository>();
+  final localDB = GetIt.instance<SqfliteDatabaseHelper>();
 
   Future<void> getEmail() async {
     var email = await LocalData.getEmail();
@@ -28,12 +32,21 @@ class MessagesBloc extends Cubit<MessagesState> {
     emit(state.copyWith(MessagesState(isLoading: true, messages: const [])));
 
     try {
+      var result = await checkInternetConnectivity();
+      if (!result) {
+        dataList = await localDB.getAllMessages();
+        emit(state
+            .copyWith(MessagesState(isLoading: false, messages: dataList)));
+        return;
+      }
       response = await repository.getMessages();
 
       emit(state.copyWith(MessagesState(isLoading: false)));
       if (response != null) {
+        await localDB.deleteMessages();
         for (var message in response) {
           dataList.add(Email.fromJson(message));
+          await localDB.insertMessage(Email.fromJson(message));
         }
         emit(state
             .copyWith(MessagesState(isLoading: false, messages: dataList)));

@@ -94,7 +94,7 @@ class ScreenWrapperWidget extends StatelessWidget {
               ),
               Container(
                 margin: EdgeInsets.zero,
-                height: context.height - (200),
+                height: context.height - (150),
                 width: context.width,
                 decoration: const BoxDecoration(
                   color: ColorManager.primaryColor,

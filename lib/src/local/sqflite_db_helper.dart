@@ -39,7 +39,7 @@ class SqfliteDatabaseHelper {
   String createProductDataTable() {
     return "CREATE TABLE IF NOT EXISTS messages ("
         "id TEXT,"
-        "from TEXT,"
+        "from_address TEXT,"
         "subject TEXT,"
         "intro TEXT,"
         "name TEXT,"
@@ -48,7 +48,14 @@ class SqfliteDatabaseHelper {
 
   Future<int> insertMessage(Email email) async {
     Database db = await database;
-    var result = await db.insert("messages", email.toJson());
+    var result = await db.insert("messages", {
+      "id": email.id.toString(),
+      "from_address": email.from!.address!.toString(),
+      "subject": email.subject.toString(),
+      "intro": email.intro.toString(),
+      "name": email.from!.name!.toString(),
+      "createdAt": email.createdAt!.toIso8601String()
+    });
     return result;
   }
 
@@ -57,7 +64,16 @@ class SqfliteDatabaseHelper {
     List<Email> messsageList = <Email>[];
     var messsageMapList = await db.query("messages", orderBy: 'createdAt');
     for (int i = 0; i < messsageMapList.length; i++) {
-      messsageList.add(Email.fromJson(messsageMapList[i]));
+      messsageList.add(Email.fromJson({
+        "id": messsageMapList[i]['id'],
+        "from": {
+          "address": messsageMapList[i]['from_address'],
+          "name": messsageMapList[i]['name']
+        },
+        "subject": messsageMapList[i]['subject'],
+        "intro": messsageMapList[i]['intro'],
+        "createdAt": messsageMapList[i]['createdAt'],
+      }));
     }
     return messsageList;
   }
