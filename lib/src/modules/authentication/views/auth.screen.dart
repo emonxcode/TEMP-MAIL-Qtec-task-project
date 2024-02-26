@@ -103,16 +103,18 @@ class AuthenticationScreen extends StatelessWidget {
                           onTap: () {
                             if (formKey.currentState!.validate()) {
                               if (state.pageStatus == 0) {
-                                context.read<AuthenticationBloc>().login();
+                                context
+                                    .read<AuthenticationBloc>()
+                                    .login(context, domain);
                               } else {
                                 context
                                     .read<AuthenticationBloc>()
-                                    .createAccount();
+                                    .createAccount(context, domain);
                               }
                             }
                           },
                           buttonText: state.pageStatus == 0 ? login : create,
-                          isLoading: false,
+                          isLoading: state.isBtnLoading!,
                           showIcon: false,
                           buttonColor: ColorManager.primaryColor,
                           textColor: ColorManager.whiteColor,

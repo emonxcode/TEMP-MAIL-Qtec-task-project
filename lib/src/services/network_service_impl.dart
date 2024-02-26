@@ -43,11 +43,11 @@ class NetworkApiServices extends BaseApiServices {
     }
     var headers = {
       "Accept": "application/json",
-      'Content-type': 'application/json',
+      'content-type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
-      'Authorization': 'Bearer ${await LocalData.getToken()}',
+      'Authorization': 'Bearer ${await LocalData.getToken() ?? ''}',
     };
-    debugPrint(await LocalData.getToken());
+
     Map<String, dynamic> responseJson;
     try {
       http.Response response = await http.post(
@@ -63,7 +63,7 @@ class NetworkApiServices extends BaseApiServices {
           "{\"success\": false, \"message\": \"Server not found!\"}", 500));
     } catch (e) {
       responseJson = await returnResponse(Response(
-          "{\"success\": false, \"message\": \"Something went wrong!\"}", 500));
+          "{\"success\": false, \"message\": \"$e\"}", 500));
     }
 
     return responseJson;
@@ -75,6 +75,9 @@ dynamic returnResponse(Response response) {
     case 200:
       dynamic responseJson = json.decode(response.body);
       return responseJson;
+    case 201:
+      dynamic responseJson = json.decode(response.body);
+      return responseJson;
     case 400:
       dynamic responseJson = json.decode(response.body);
       return responseJson;
@@ -84,11 +87,14 @@ dynamic returnResponse(Response response) {
     case 500:
       dynamic responseJson = json.decode(response.body);
       return responseJson;
+    case 415:
+      dynamic responseJson = json.decode(response.body);
+      return responseJson;
     case 422:
       dynamic responseJson = json.decode(response.body);
       return responseJson;
     default:
       throw Exception(
-          'Error ccoured while communicating with server ${response.statusCode}');
+          'Error occured while communicating with server ${response.statusCode}');
   }
 }

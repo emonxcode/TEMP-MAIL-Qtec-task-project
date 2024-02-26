@@ -15,4 +15,12 @@ class LocalData {
   static Future<String> getToken() async {
     return prefs!.getString("token") ?? '';
   }
+
+  static Future<bool> setEmail(String email) async {
+    return prefs!.setString("email", email);
+  }
+
+  static Future<String> getEmail() async {
+    return prefs!.getString("email") ?? '';
+  }
 }
