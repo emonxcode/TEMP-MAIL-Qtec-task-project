@@ -8,3 +8,4 @@ const create = 'Create';
 const dont_have_account = 'Don\'t have an account?';
 const already_have_account = 'Already have an account?';
 const cannot_be_empty = 'Can\'t be empty';
+const create_email_account = 'Create Email Account';

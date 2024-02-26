@@ -1,15 +1,25 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 class AuthenticationState extends Equatable {
-  AuthenticationState({this.counter1, this.counter2});
-  int? counter1 = 0;
-  int? counter2 = 0;
-  copyWith(AuthenticationState homeState) {
+  AuthenticationState(
+      {this.pageStatus, this.emailTextController, this.passwordTextController, this.showPassword});
+
+  int? pageStatus = 0;
+  TextEditingController? emailTextController = TextEditingController();
+  TextEditingController? passwordTextController = TextEditingController();
+  bool? showPassword = false;
+
+  copyWith(AuthenticationState state) {
     return AuthenticationState(
-        counter1: homeState.counter1 ?? counter1,
-        counter2: homeState.counter2 ?? counter2);
+      pageStatus: state.pageStatus ?? pageStatus,
+      emailTextController: state.emailTextController ?? emailTextController,
+      passwordTextController: state.passwordTextController ?? passwordTextController, 
+      showPassword: state.showPassword ?? showPassword,
+    );
   }
 
   @override
-  List<Object?> get props => [counter1, counter2];
+  List<Object?> get props =>
+      [pageStatus, emailTextController, passwordTextController, showPassword];
 }

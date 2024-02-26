@@ -1,22 +1,26 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:temp_mail/src/modules/authentication/bloc/auth.state.dart';
 
 class AuthenticationBloc extends Cubit<AuthenticationState> {
-  AuthenticationBloc() : super(AuthenticationState(counter1: 0, counter2: 0));
+  AuthenticationBloc()
+      : super(AuthenticationState(
+          pageStatus: 0,
+          emailTextController: TextEditingController(),
+          passwordTextController: TextEditingController(),
+          showPassword: false,
+        ));
 
-  void increment(int counterNumber) {
-    emit(
-      counterNumber == 1
-          ? state.copyWith(AuthenticationState(counter1: state.counter1! + 1))
-          : state.copyWith(AuthenticationState(counter2: state.counter2! + 1)),
-    );
+  void changePageStatus(int pageStatus) {
+    emit(state.copyWith(AuthenticationState(pageStatus: pageStatus)));
   }
 
-  void decrement(int counterNumber) {
-    emit(
-      counterNumber == 1
-          ? state.copyWith(AuthenticationState(counter1: state.counter1! - 1))
-          : state.copyWith(AuthenticationState(counter2: state.counter2! - 1)),
-    );
+  void showPassword() {
+    emit(state
+        .copyWith(AuthenticationState(showPassword: !state.showPassword!)));
   }
+
+  Future login() async {}
+
+  Future createAccount() async {}
 }

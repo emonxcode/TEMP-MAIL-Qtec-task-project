@@ -7,10 +7,10 @@ class DomainsState extends Equatable {
   List<Domain>? available_domains = [];
   bool? isLoading = false;
 
-  copyWith(DomainsState homeState) {
+  copyWith(DomainsState state) {
     return DomainsState(
-      available_domains: homeState.available_domains ?? available_domains,
-      isLoading: homeState.isLoading ?? isLoading,
+      available_domains: state.available_domains ?? available_domains,
+      isLoading: state.isLoading ?? isLoading,
     );
   }
 

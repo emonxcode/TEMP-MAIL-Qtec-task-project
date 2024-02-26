@@ -13,7 +13,8 @@ import '../bloc/auth.bloc.dart';
 import '../bloc/auth.state.dart';
 
 class AuthenticationScreen extends StatelessWidget {
-  AuthenticationScreen({super.key});
+  AuthenticationScreen({super.key, required this.domain});
+  final String domain;
 
   var formKey = GlobalKey<FormState>();
 
@@ -22,103 +23,129 @@ class AuthenticationScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorManager.scaffoldBackGroundColor,
       body: Form(
-        key: formKey,
-        child: ScreenWrapperWidget(
-            title: appName,
-            subtitle: login,
-            showBackBtn: true,
-            child: Column(
-              children: [
-                Flexible(
-                    child: ListView(
+          key: formKey,
+          child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+            builder: (context, state) {
+              return ScreenWrapperWidget(
+                title: appName,
+                subtitle: state.pageStatus == 0 ? login : create_email_account,
+                showBackBtn: true,
+                child: Column(
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    Flexible(
+                        child: ListView(
                       children: [
-                        Flexible(
-                          child: QtecTextField(
-                            textInputType: TextInputType.text,
-                            fillColor: ColorManager.whiteColor,
-                            color: ColorManager.whiteColor,
-                            hint: enter_email,
-                            obscureText: false,
-                            controller: TextEditingController(),
-                            maxLines: 1,
-                            onFieldSubmitted: (string) {
-                              return null;
-                            },
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return cannot_be_empty;
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Flexible(
+                              child: QtecTextField(
+                                textInputType: TextInputType.text,
+                                fillColor: ColorManager.whiteColor,
+                                color: ColorManager.whiteColor,
+                                hint: enter_email,
+                                obscureText: false,
+                                controller: state.emailTextController,
+                                maxLines: 1,
+                                onFieldSubmitted: (string) {
+                                  return null;
+                                },
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return cannot_be_empty;
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                            AppSpace.spaceW10,
+                            Flexible(
+                              child: QtecTextWidget(
+                                text: "@$domain",
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        AppSpace.spaceH16,
+                        QtecTextField(
+                          textInputType: TextInputType.text,
+                          fillColor: ColorManager.whiteColor,
+                          color: ColorManager.whiteColor,
+                          hint: enter_password,
+                          obscureText: !state.showPassword!,
+                          controller: state.passwordTextController,
+                          maxLines: 1,
+                          onFieldSubmitted: (string) {
+                            return null;
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return cannot_be_empty;
+                            }
+                            return null;
+                          },
+                          suffixIcon: IconButton(
+                              onPressed: () {
+                                context
+                                    .read<AuthenticationBloc>()
+                                    .showPassword();
+                              },
+                              icon: Icon(
+                                state.showPassword!
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: ColorManager.primaryColor,
+                              )),
+                        ),
+                        AppSpace.spaceH30,
+                        QtecButton(
+                          onTap: () {
+                            if (formKey.currentState!.validate()) {
+                              if (state.pageStatus == 0) {
+                                context.read<AuthenticationBloc>().login();
+                              } else {
+                                context
+                                    .read<AuthenticationBloc>()
+                                    .createAccount();
                               }
-                              return null;
-                            },
-                          ),
+                            }
+                          },
+                          buttonText: state.pageStatus == 0 ? login : create,
+                          isLoading: false,
+                          showIcon: false,
+                          buttonColor: ColorManager.primaryColor,
+                          textColor: ColorManager.whiteColor,
                         ),
-                        AppSpace.spaceW10,
-                        const Flexible(
-                          child: QtecTextWidget(
-                            text: "@sampjledomailn.org",
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    AppSpace.spaceH16,
-                    QtecTextField(
-                      textInputType: TextInputType.text,
-                      fillColor: ColorManager.whiteColor,
-                      color: ColorManager.whiteColor,
-                      hint: enter_password,
-                      obscureText: false,
-                      controller: TextEditingController(),
-                      maxLines: 1,
-                      onFieldSubmitted: (string) {
-                        return null;
-                      },
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return cannot_be_empty;
-                        }
-                        return null;
-                      },
-                      suffixIcon: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.visibility,
-                            color: ColorManager.primaryColor,
-                          )),
-                    ),
-                    AppSpace.spaceH30,
-                    QtecButton(
-                      onTap: () {
-                        if (formKey.currentState!.validate()) {}
-                      },
-                      buttonText: login,
-                      isLoading: false,
-                      showIcon: false,
-                      buttonColor: ColorManager.primaryColor,
-                      textColor: ColorManager.whiteColor,
-                    ),
-                    AppSpace.spaceH20,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const QtecTextWidget(text: dont_have_account),
-                        TextButton(
-                          onPressed: () {},
-                          child: const QtecTextWidget(
-                            text: create,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        AppSpace.spaceH20,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            QtecTextWidget(
+                                text: state.pageStatus == 0
+                                    ? dont_have_account
+                                    : already_have_account),
+                            TextButton(
+                              onPressed: () {
+                                context
+                                    .read<AuthenticationBloc>()
+                                    .changePageStatus(
+                                        state.pageStatus == 0 ? 1 : 0);
+                              },
+                              child: QtecTextWidget(
+                                text: state.pageStatus == 0 ? create : login,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )
+                          ],
                         )
                       ],
-                    )
+                    ))
                   ],
-                ))
-              ],
-            )),
-      ),
+                ),
+              );
+            },
+          )),
     );
   }
 }

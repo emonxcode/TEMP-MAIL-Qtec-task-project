@@ -19,7 +19,9 @@ class DomainItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(AuthenticationScreen());
+        context.push(AuthenticationScreen(
+          domain: domain.domain,
+        ));
       },
       child: Container(
         height: 50,
