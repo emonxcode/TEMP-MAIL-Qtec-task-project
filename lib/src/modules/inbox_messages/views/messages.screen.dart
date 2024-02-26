@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
+import 'package:pull_to_refresh_new/pull_to_refresh.dart';
 import 'package:temp_mail/src/config/app_space.dart';
 import 'package:temp_mail/src/config/constants.dart';
 import 'package:temp_mail/src/modules/common/qtec_text_widget.dart';
