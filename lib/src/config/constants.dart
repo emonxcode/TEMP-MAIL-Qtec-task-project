@@ -1,3 +1,10 @@
 const appName = 'TEMP MAIL';
 const available_domain = 'Available Domain';
 const tap_to_create = 'Tap to create account or login';
+const login = 'Login';
+const enter_email = 'Enter email';
+const enter_password = 'Enter password';
+const create = 'Create';
+const dont_have_account = 'Don\'t have an account?';
+const already_have_account = 'Already have an account?';
+const cannot_be_empty = 'Can\'t be empty';
