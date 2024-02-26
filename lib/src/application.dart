@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:temp_mail/src/modules/domain_listing/bloc/domains.bloc.dart';
-import 'package:temp_mail/src/modules/inbox_messages/bloc/domains.bloc.dart';
+import 'package:temp_mail/src/modules/inbox_messages/bloc/messages.bloc.dart';
 import 'modules/authentication/bloc/auth.bloc.dart';
 import 'modules/domain_listing/views/domains.screen.dart';
 
