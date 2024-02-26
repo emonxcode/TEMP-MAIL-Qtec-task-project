@@ -13,7 +13,7 @@ class NetworkApiServices extends BaseApiServices {
       "Accept": "application/json",
       'Content-type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
-      'Authorization': 'Bearer ${await LocalData.getToken()}',
+      'Authorization': 'Bearer ${await LocalData.getToken() ?? ''}',
     };
 
     dynamic responseJson;

@@ -5,11 +5,15 @@ import 'package:temp_mail/src/utils/context.dart';
 import '../../../../config/app_space.dart';
 import '../../../../config/colors.dart';
 import '../../../common/qtec_text_widget.dart';
+import '../../models/domain.mode.dart';
 
 class DomainItemWidget extends StatelessWidget {
   const DomainItemWidget({
     super.key,
+    required this.domain,
   });
+
+  final Domain domain;
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +28,16 @@ class DomainItemWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           color: ColorManager.whiteColor,
         ),
-        child: const Row(
+        child: Row(
           children: [
             AppSpace.spaceW16,
-            Icon(
+            const Icon(
               Icons.email,
               color: ColorManager.primaryColor,
             ),
             AppSpace.spaceW20,
             QtecTextWidget(
-              text: "emargentvillage.org",
+              text: domain.domain ?? "",
               color: ColorManager.blackColor,
               fontSize: 15,
             ),

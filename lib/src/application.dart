@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:temp_mail/src/modules/domain_listing/bloc/domains.bloc.dart';
 import 'modules/authentication/bloc/auth.bloc.dart';
 import 'modules/domain_listing/views/domains.screen.dart';
 
@@ -11,6 +12,9 @@ class Application extends StatelessWidget {
       providers: [
         BlocProvider<AuthenticationBloc>(
           create: (BuildContext context) => AuthenticationBloc(),
+        ),
+         BlocProvider<DomainsBloc>(
+          create: (BuildContext context) => DomainsBloc(),
         ),
       ],
       child: MaterialApp(
