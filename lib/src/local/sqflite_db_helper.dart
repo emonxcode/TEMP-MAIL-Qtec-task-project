@@ -17,13 +17,13 @@ class SqfliteDatabaseHelper {
     return await openDatabase(path, version: version, onOpen: (db) {},
         onCreate: (Database db, int version) async {
       var dbBatch = db.batch();
-      dbBatch.execute(createProductDataTable());
+      dbBatch.execute(createMessagesDataTable());
       await dbBatch.commit(noResult: true);
     }, onUpgrade: (Database db, currentVersion, newVersion) async {
       final upgradeCalls = {
         2: (Database db, Batch dbBatch) async {
           dbBatch.execute('DROP TABLE IF EXISTS messages');
-          dbBatch.execute(createProductDataTable());
+          dbBatch.execute(createMessagesDataTable());
         },
       };
       var dbBatch = db.batch();
@@ -36,7 +36,7 @@ class SqfliteDatabaseHelper {
 
   /* ================================  messages  ==============================  */
 
-  String createProductDataTable() {
+  String createMessagesDataTable() {
     return "CREATE TABLE IF NOT EXISTS messages ("
         "id TEXT,"
         "from_address TEXT,"

@@ -3,7 +3,6 @@ import 'package:temp_mail/src/utils/context.dart';
 
 import '../../config/app_space.dart';
 import '../../config/colors.dart';
-import '../../config/constants.dart';
 import 'qtec_text_widget.dart';
 
 class ScreenWrapperWidget extends StatelessWidget {

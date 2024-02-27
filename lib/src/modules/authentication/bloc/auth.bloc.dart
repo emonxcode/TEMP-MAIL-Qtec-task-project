@@ -7,7 +7,6 @@ import 'package:temp_mail/src/modules/authentication/bloc/auth.state.dart';
 import 'package:temp_mail/src/modules/authentication/repo/auth.repo.dart';
 import 'package:temp_mail/src/modules/inbox_messages/views/messages.screen.dart';
 import 'package:temp_mail/src/utils/context.dart';
-
 import '../../../config/colors.dart';
 import '../../common/sneak_bar.dart';
 

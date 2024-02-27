@@ -4,7 +4,6 @@ import 'package:temp_mail/src/modules/domain_listing/bloc/domains.bloc.dart';
 import 'package:temp_mail/src/modules/inbox_messages/bloc/messages.bloc.dart';
 import 'package:temp_mail/src/modules/splash/splash.screen.dart';
 import 'modules/authentication/bloc/auth.bloc.dart';
-import 'modules/domain_listing/views/domains.screen.dart';
 
 class Application extends StatelessWidget {
   const Application({super.key});
