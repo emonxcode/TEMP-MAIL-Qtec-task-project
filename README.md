@@ -43,13 +43,13 @@
 >Screenshots
 <table>
 <td> 
-<img src="https://github.com/emonxcode/MahfilApp_QTech_Solutions_Task/assets/90932124/f538a317-e29a-4497-a269-f04293c43a8d" width="340" height="600"/>
+<img src="https://github.com/emonxcode/TEMP-MAIL-Qtec-task-project/assets/90932124/6737580a-0e4d-43ff-b705-e6fa902f3d83" width="340" height="600"/>
 </td>
 <td> 
-<img src="https://github.com/emonxcode/MahfilApp_QTech_Solutions_Task/assets/90932124/cad89bfa-f7bd-42cc-9865-590680663cbd" width="340" height="600"/>
+<img src="https://github.com/emonxcode/TEMP-MAIL-Qtec-task-project/assets/90932124/88addc5c-a4df-458f-95d1-585aa9c11cd4" width="340" height="600"/>
 </td>
 <td> 
-<img src="https://github.com/emonxcode/MahfilApp_QTech_Solutions_Task/assets/90932124/a539ebb0-be12-4eae-9d70-1de30ade05b6" width="340" height="600"/>
+<img src="https://github.com/emonxcode/TEMP-MAIL-Qtec-task-project/assets/90932124/09ceada7-33f9-4939-8d27-0fad2bdd6678" width="340" height="600"/>
 </td>
 </tr>
 </table>
