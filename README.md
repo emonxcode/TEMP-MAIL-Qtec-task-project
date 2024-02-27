@@ -43,13 +43,13 @@
 >Screenshots
 <table>
 <td> 
-<img src="https://github.com/emonxcode/TEMP-MAIL-Qtec-task-project/assets/90932124/6737580a-0e4d-43ff-b705-e6fa902f3d83" width="340" height="600"/>
-</td>
-<td> 
 <img src="https://github.com/emonxcode/TEMP-MAIL-Qtec-task-project/assets/90932124/88addc5c-a4df-458f-95d1-585aa9c11cd4" width="340" height="600"/>
 </td>
 <td> 
 <img src="https://github.com/emonxcode/TEMP-MAIL-Qtec-task-project/assets/90932124/09ceada7-33f9-4939-8d27-0fad2bdd6678" width="340" height="600"/>
+</td>
+ <td> 
+<img src="https://github.com/emonxcode/TEMP-MAIL-Qtec-task-project/assets/90932124/6737580a-0e4d-43ff-b705-e6fa902f3d83" width="340" height="600"/>
 </td>
 </tr>
 </table>
